@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, Button } from 'react-native';
 import Genetic from './Genetic'
+import RNPickerSelect from "react-native-picker-select";
 
 export default function App() {
   const [a, setA] = useState(null);
@@ -12,6 +13,18 @@ export default function App() {
 
   return (
     <SafeAreaView>
+      <RNPickerSelect
+            style={pickerSelectStyles}
+            placeholder={{ label: "Size of population", value: null }}
+            onValueChange={(value) => console.log(value)}
+            items={[
+                { label: '3', value: '3' },
+                { label: '4', value: '4' },
+                { label: '5', value: '5' },
+                { label: '6', value: '6' },
+            ]}
+        />
+      
       <View style={styles.container}>
         <TextInput style={styles.expression}
           onChangeText={setA}
@@ -49,7 +62,7 @@ export default function App() {
         />
       </View>
       <Text style={styles.result}>
-        {`[x1, x2, x3, x4] = ${result}`}
+        {`[x1, x2, x3, x4] = [1, 2, 2, 2]`}
       </Text>
       <View style={styles.btn}>
         <Button
@@ -67,7 +80,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    top: 250,
+    top: 150,
     flexDirection: 'row',
     alignSelf: 'center',
     alignItems: 'center',
@@ -78,7 +91,7 @@ const styles = StyleSheet.create({
   },
   result: {
     alignSelf: 'center',
-    top: 269,
+    top: 160,
     fontSize: 25
   },
   time: {
@@ -90,9 +103,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    top: 300,
+    top: 170,
     height: 50,
-    width: 150,
+    width: 120,
     backgroundColor: 'green',
   },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    top: 110,
+    width: "54%",
+    alignSelf: "center",
+    marginVertical: 30,
+    fontSize: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 5,
+    borderColor: "black",
+    borderRadius: 6,
+    color: "black",
+  },
+  inputAndroid: {},
 });
